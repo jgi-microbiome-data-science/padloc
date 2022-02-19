@@ -6,7 +6,7 @@
 #      /  /:/:/  /  /:/::\ /  /:/\:\ /  /\/ /\ /  /:/\:\ /  /:/ /\
 #      \  \::/   \  \::/\/ \  \:\/:/ \  \:\/:/ \  \:\/:/ \  \:\/:/
 #       \  \:\    \  \:\    \  \::/   \  \::/   \  \::/   \  \::/  
-#        \__\/     \__\/     \__\/     \__\/     \__\/     \__\/                 
+#        \__\/     \__\/     \__\/     \__\/     \__\/     \__\/   
 # 
 # PADLOC: Locate antiviral defence systems in prokaryotic genomes
 
@@ -220,8 +220,10 @@ separate_attributes <- function(gff) {
   out <- gff %>%
     separate_rows(attributes, sep = ";") %>%
     filter(attributes != "") %>%
-    separate(attributes, into = c("key", "value"), sep = "=") %>% 
-    spread(key = key, value = value, fill = NA)
+    separate(attributes, into = c("key", "value"), sep = "=") %>%
+    filter(key == "ID") %>%
+    select(-source, -phase, -key) %>%
+    rename(ID = value)
   
 }
 
