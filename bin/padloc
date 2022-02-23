@@ -370,9 +370,9 @@ hmmsearch_wrapper() {
     info "${FASTA_NAME}.domtblout already exists; use --force to overwrite\n"
   else
     # Print command.
-    debug "hpc_hmmsearch --cpu ${CPU} --acc --noali --domtblout ${DOMTBL_PATH} ${HMM_DATABASE} ${FAA_FILE}\n"
+    debug "hpc_hmmsearch --cpu ${CPU} -E 1e-4 --acc --noali --domtblout ${DOMTBL_PATH} ${HMM_DATABASE} ${FAA_FILE}\n"
     # Run hmmer.
-    if hpc_hmmsearch --cpu "${CPU}" --acc --noali --domtblout "${DOMTBL_PATH}" "${HMM_DATABASE}" "${FAA_FILE}" > /dev/null; then
+    if hpc_hmmsearch --cpu "${CPU}" -E 1e-4 --acc --noali --domtblout "${DOMTBL_PATH}" "${HMM_DATABASE}" "${FAA_FILE}" > /dev/null; then
       debug "Finished @ $(date) ... SUCCESSFUL\n"
     else
       debug "Finished @ $(date) ... FAILED\n"
