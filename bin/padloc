@@ -315,7 +315,7 @@ check_opt() {
   fi
   
   # Check that output directory exists.
-  [[ -d "${OUT_DIR}" ]] || die "Valid output directory required"
+  [[ -d "${OUT_DIR}" ]] || mkdir ${OUT_DIR} ; info "${OUT_DIR} created.\n"
 
   # Check whether --cpu is a valid non-zero integer.
   [[ "${CPU}" =~ ^-?[0-9]+$ && "${CPU}" -gt 0 ]] ||
